@@ -1,0 +1,19 @@
+# 依赖
+node_modules/
+
+# 构建产物
+frontend/dist/
+backend/target/
+
+# IDE 配置
+.idea/
+*.iml
+.vscode/
+
+# 个人敏感文件（简历、照片等，不上传）
+assets/
+
+# 系统与日志
+.DS_Store
+Thumbs.db
+*.log
