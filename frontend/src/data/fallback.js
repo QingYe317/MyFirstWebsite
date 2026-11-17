@@ -27,7 +27,7 @@ export const fallbackProjects = [
     description:
       '跟随实战课程完成的外卖项目，实现管理端与客户端功能开发，实践了 Redis 缓存、WebSocket 实时推送、PageHelper 分页等技术。',
     techStack: 'Spring Boot,Redis,WebSocket,MySQL,Vue',
-    link: 'https://gitee.com/prior-people/sky-take-out',
+    link: 'https://gitee.com/prior-people',
     sortOrder: 2,
   },
   {
@@ -36,7 +36,7 @@ export const fallbackProjects = [
     description:
       '你正在浏览的这个网站：Vue3 + Spring Boot 前后端分离搭建，用于展示个人作品与学习笔记，也是前端工程化的一次完整练习。',
     techStack: 'Vue3,Vue Router,Axios,Spring Boot,MySQL',
-    link: 'https://github.com/QingYe317',
+    link: 'https://github.com/QingYe317/MyFirstWebsite',
     sortOrder: 3,
   },
 ]

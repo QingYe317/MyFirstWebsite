@@ -11,8 +11,8 @@ REPLACE INTO profile (id, name, title, avatar, bio, email, github, location, ski
 
 REPLACE INTO project (id, name, description, tech_stack, link, sort_order) VALUES
 (1, 'Tlias 智能学习辅助系统', '基于 JavaSE、Spring Boot、MySQL 与 MyBatis 完成的后台管理项目，实现部门与员工管理的增删改查，并在此基础上新增了数据统计功能。', 'Java,Spring Boot,MyBatis,MySQL', 'https://github.com/QingYe317/tlias-web-management', 1),
-(2, '苍穹外卖', '跟随实战课程完成的外卖项目，实现管理端与客户端功能开发，实践了 Redis 缓存、WebSocket 实时推送、PageHelper 分页等技术。', 'Spring Boot,Redis,WebSocket,MySQL,Vue', 'https://gitee.com/prior-people/sky-take-out', 2),
-(3, '个人网站', '你正在浏览的这个网站：Vue3 + Spring Boot 前后端分离搭建，用于展示个人作品与学习笔记，也是前端工程化的一次完整练习。', 'Vue3,Vue Router,Axios,Spring Boot,MySQL', 'https://github.com/QingYe317', 3);
+(2, '苍穹外卖', '跟随实战课程完成的外卖项目，实现管理端与客户端功能开发，实践了 Redis 缓存、WebSocket 实时推送、PageHelper 分页等技术。', 'Spring Boot,Redis,WebSocket,MySQL,Vue', 'https://gitee.com/prior-people', 2),
+(3, '个人网站', '你正在浏览的这个网站：Vue3 + Spring Boot 前后端分离搭建，用于展示个人作品与学习笔记，也是前端工程化的一次完整练习。', 'Vue3,Vue Router,Axios,Spring Boot,MySQL', 'https://github.com/QingYe317/MyFirstWebsite', 3);
 
 REPLACE INTO article (id, title, summary, content, tag, created_at) VALUES
 (1, 'LeetCode Hot 100 刷题进行时', '11 月 1 日开始刷 LeetCode Hot 100，每天保持 1-3 题，记录当前进度与刷题感受。', '11 月 1 日正式启动 LeetCode Hot 100 刷题计划，目标是把数据结构与算法基础补齐。\n\n当前进度：完成第 15 题，每天做 1-3 题。之前算法题做得不多，大一上学期做过一些，后面接触很少，现在算从头捡起来，还处于初级阶段。\n\n几天刷下来的感受：1）数组与双指针的套路性很强，理解模板后很多题都是变形；2）做完题不能直接看题解了事，隔天重写一遍印象更深；3）有些题一上手没思路很正常，先想暴力解再逐步优化。\n\n刷题节奏不求快，稳定坚持比突击更重要。计划每完成 25 题回来复盘一次。', '算法', '2026-11-10 21:30:00'),
