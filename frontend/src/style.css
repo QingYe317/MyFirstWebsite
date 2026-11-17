@@ -11,7 +11,7 @@
   --surface-2: #fafbfc;     /* 次级填充 */
   --ink: #17191e;           /* 标题 / 主文字 */
   --ink-2: #454c59;         /* 正文 */
-  --ink-3: #6b7280;         /* 元信息（对白底 ≥4.5:1） */
+  --ink-3: #5f6673;         /* 元信息（对纸灰底与白底均 ≥4.5:1） */
   --border: #e4e7ec;        /* 常规描边 */
   --border-strong: #cdd2da; /* 悬停 / 强描边 */
   --accent: #2f5bea;        /* 主色：仅交互与强调 */
@@ -20,14 +20,6 @@
   --success: #15803d;
   --success-soft: #ecfdf3;
   --success-border: #bbf7d0;
-
-  /* —— 兼容别名（旧类名过渡期使用，后续阶段清理） —— */
-  --primary: var(--accent);
-  --primary-dark: var(--accent-dark);
-  --primary-light: var(--accent-soft);
-  --text: var(--ink);
-  --text-light: var(--ink-3);
-  --card-bg: var(--surface);
 
   /* —— 字体 —— */
   --font-sans: -apple-system, "PingFang SC", "HarmonyOS Sans SC", "Segoe UI",
@@ -444,36 +436,6 @@ button:focus-visible {
   }
 }
 
-/* 兼容旧类：关于页复用（阶段 6 清理） */
-.hero-avatar {
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 52px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-  animation: fadeUp 0.4s var(--ease) both;
-}
-
-.hero-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* 兼容旧类：关于页复用（阶段 6 清理） */
-.hero-title {
-  color: var(--ink-3);
-  margin: 8px 0 14px;
-  font-size: 15px;
-}
-
 /* 打字机文本：只播一轮，打完光标淡出 */
 .typing-line {
   min-height: 28px;
@@ -500,12 +462,6 @@ button:focus-visible {
   50% {
     opacity: 0;
   }
-}
-
-.hero-bio {
-  max-width: 640px;
-  margin: 0 auto 22px;
-  color: var(--ink-3);
 }
 
 .hero-actions {
@@ -997,54 +953,63 @@ button:focus-visible {
   }
 }
 
-/* ===== 技能分组网格（自适应 2~4 列） ===== */
-.skill-grid {
+/* ===== 技能图谱：分组平铺标签（行式） ===== */
+.skill-group {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 20px;
-}
-
-.skill-grid .card {
-  animation: fadeUp 0.4s var(--ease) both;
-}
-
-.skill-grid > :nth-child(2) {
-  animation-delay: 0.08s;
-}
-
-.skill-grid > :nth-child(3) {
-  animation-delay: 0.16s;
-}
-
-.skill-grid > :nth-child(4) {
-  animation-delay: 0.24s;
-}
-
-/* ===== 当前进行中（进度条卡片） ===== */
-.progress-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.progress-card {
-  gap: 12px;
-}
-
-.progress-head {
-  display: flex;
-  justify-content: space-between;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
   align-items: baseline;
-  font-weight: 700;
-  font-size: 15px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+}
+
+.skill-group:first-child {
+  border-top: none;
+  padding-top: 4px;
+}
+
+.skill-group-name {
+  font-size: 14px;
+  font-weight: 600;
   color: var(--ink);
 }
 
-.progress-percent {
-  font-size: 14px;
+.tags.skill-group-items {
+  justify-content: flex-start;
+  margin: 0;
+}
+
+/* ===== 当前进行中：细进度条列表 ===== */
+.ongoing-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.ongoing-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.ongoing-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.ongoing-percent {
+  font-size: 13px;
   color: var(--accent);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
+}
+
+.ongoing-desc {
+  margin-top: 8px;
+  color: var(--ink-3);
+  font-size: var(--text-sm);
 }
 
 .progress-bar {
@@ -1062,11 +1027,6 @@ button:focus-visible {
   transition: width 0.6s var(--ease);
 }
 
-.progress-desc {
-  color: var(--ink-3);
-  font-size: var(--text-sm);
-}
-
 /* ===== 页面标题 ===== */
 .page-title {
   font-size: var(--text-title);
@@ -1074,20 +1034,57 @@ button:focus-visible {
   margin-bottom: 20px;
 }
 
-/* ===== 关于我 ===== */
-.about-card {
-  text-align: center;
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 32px;
+/* ===== 关于我（左栏粘性侧栏 + 右栏内容） ===== */
+.about-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.about-side {
+  position: sticky;
+  top: 84px;
+}
+
+.about-name {
+  font-size: 24px;
+  margin: 18px 0 4px;
+}
+
+.about-role {
+  color: var(--ink-3);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.about-bio {
+  color: var(--ink-2);
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 16px;
 }
 
 .about-info {
-  margin-top: 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  margin-bottom: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.about-info li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+
+.about-info li span {
   color: var(--ink-3);
+  flex-shrink: 0;
 }
 
 .about-info a {
@@ -1098,13 +1095,10 @@ button:focus-visible {
   text-decoration: underline;
 }
 
-/* 联系方式按钮组 */
 .contact-actions {
   display: flex;
-  justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 20px;
 }
 
 .copy-tip {
@@ -1114,10 +1108,14 @@ button:focus-visible {
   animation: fadeUp 0.3s var(--ease) both;
 }
 
+.about-main .section:first-child {
+  margin-top: 8px;
+}
+
 /* 经历时间线 */
 .timeline {
   max-width: 640px;
-  margin: 0 auto;
+  margin: 0;
   position: relative;
   padding-left: 28px;
 }
@@ -1279,6 +1277,16 @@ button:focus-visible {
     grid-row: auto;
   }
 
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .about-side {
+    position: static;
+    max-width: 480px;
+  }
+
   .footer-inner {
     flex-wrap: wrap;
   }
@@ -1367,6 +1375,11 @@ button:focus-visible {
   }
 
   .post-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .skill-group {
     grid-template-columns: 1fr;
     gap: 8px;
   }
