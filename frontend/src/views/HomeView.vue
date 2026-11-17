@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { getProfile, getProjects, getArticles } from '../api'
+import { abbr } from '../utils'
 import avatarImg from '../assets/avatar.jpg'
 
 // 首页数据：个人信息 + 作品 + 文章（完整列表用于统计，精选前 3 个）
@@ -66,11 +67,6 @@ watch(
 )
 
 onUnmounted(() => clearTimeout(timer))
-
-// 项目名缩写：占位封面与角标使用（去空格取前两字，拉丁字母大写）
-function abbr(name) {
-  return (name || '').replace(/\s+/g, '').slice(0, 2).toUpperCase()
-}
 </script>
 
 <template>
