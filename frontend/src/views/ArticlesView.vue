@@ -28,7 +28,7 @@ onMounted(async () => {
     <h1 class="page-title">博客列表</h1>
     <p class="page-subtitle">记录学习中的笔记、踩坑与心得</p>
 
-    <!-- 标签筛选 -->
+    <!-- 标签筛选：下划线页签 -->
     <div class="filter-tabs">
       <button
         v-for="t in tags"
@@ -41,19 +41,22 @@ onMounted(async () => {
       </button>
     </div>
 
-    <div class="article-list">
+    <!-- 行式列表（与首页「最新文章」同一设计语言） -->
+    <div class="post-list">
       <router-link
         v-for="a in filteredArticles"
         :key="a.id"
         :to="`/articles/${a.id}`"
-        class="article-item"
+        class="post-item"
       >
-        <h3>{{ a.title }}</h3>
-        <p>{{ a.summary }}</p>
-        <span class="meta">
+        <div class="post-meta">
+          <span class="post-date">{{ (a.createdAt || '').slice(0, 10) }}</span>
           <span class="badge">{{ a.tag }}</span>
-          {{ (a.createdAt || '').slice(0, 10) }}
-        </span>
+        </div>
+        <div class="post-body">
+          <h3>{{ a.title }}</h3>
+          <p>{{ a.summary }}</p>
+        </div>
       </router-link>
       <p v-if="!filteredArticles.length" class="empty-tip">该标签下暂无文章</p>
     </div>
@@ -61,14 +64,18 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+.page-title {
+  margin-bottom: 6px;
+}
+
 .page-subtitle {
-  color: var(--text-light);
+  color: var(--ink-3);
   font-size: 14px;
-  margin: -14px 0 22px;
+  margin: 0 0 24px;
 }
 
 .empty-tip {
-  color: var(--text-light);
+  color: var(--ink-3);
   text-align: center;
   padding: 32px 0;
   font-size: 14px;
